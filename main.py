@@ -76,7 +76,6 @@ def go(config: DictConfig):
             )
 
         if "data_split" in active_steps:
-            ##################
             _ = mlflow.run(
                 os.path.join(hydra.utils.get_original_cwd(), "components", "train_val_test_split"),
                 "main",
@@ -87,8 +86,6 @@ def go(config: DictConfig):
                     "stratify_by": config['modeling']['stratify_by']
                 },
             )
-            ##################
-            pass
 
         if "train_random_forest" in active_steps:
 
@@ -100,7 +97,6 @@ def go(config: DictConfig):
             # NOTE: use the rf_config we just created as the rf_config parameter for the train_random_forest
             # step
 
-            ##################
             _ = mlflow.run(
                 os.path.join(hydra.utils.get_original_cwd(), "src", "train_random_forest"),
                 "main",
@@ -113,13 +109,9 @@ def go(config: DictConfig):
                     "output_artifact": "random_forest_export"
                 },
             )
-            ##################
-
-            pass
 
         if "test_regression_model" in active_steps:
 
-            ##################
             _ = mlflow.run(
                 os.path.join(hydra.utils.get_original_cwd(), "components", "test_regression_model"),
                 "main",
@@ -128,9 +120,6 @@ def go(config: DictConfig):
                     "test_dataset": "test_data.csv:latest"
                 },
             )
-            ##################
-
-            pass
 
 
 if __name__ == "__main__":
