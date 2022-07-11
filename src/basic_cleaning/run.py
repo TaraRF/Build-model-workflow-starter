@@ -7,6 +7,8 @@ import argparse
 import logging
 import wandb
 import pandas as pd
+# Following the reviewer suggestion, I add this line to make the code reproducable.
+np.random.seed(42)
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
 logger = logging.getLogger()
